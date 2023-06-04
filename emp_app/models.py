@@ -6,9 +6,12 @@ class Department(models.Model):
     name= models.CharField(max_length=70, null=False)
     locals= models.CharField(max_length=70)
 
+    def __str__(self):
+        return self.name
 class Role(models.Model):
     name= models.CharField(max_length=70, null=False)
-
+    def __str__(self):
+        return self.name
 class Employee(models.Model):
     firstname= models.CharField(max_length=70, null=False)
     lastname= models.CharField(max_length=70)
@@ -17,4 +20,7 @@ class Employee(models.Model):
     bonus = models.IntegerField(default=0)
     role = models.ForeignKey(Role, on_delete=models.CASCADE)
     phone = models.IntegerField(default=0)
-    hire_date = models.IntegerField(default=0)    
+    hire_date = models.DateField()
+    
+    def __str__(self):
+        return "%s, %s, %s " % (self.firstname, self.lastname, self.phone) 
